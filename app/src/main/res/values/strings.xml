@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Project Baking App</string>
+    <string name="title_activity_test">Test</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="step">Step \t </string>
+    <string name="ingredients">Ingredients</string>
+    <string name="list_step">list_step</string>
+    <string name="list_ingredient">list_ingredient</string>
+    <string name="description">Description :</string>
+    <string name="title_activity_detail_step">DetailStepActivity</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="not_found">Not Found</string>
+    <string name="recipe_name">recipe_name</string>
+</resources>

@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.StepActivity">
+
+    <fragment
+        android:id="@+id/list_step_fragment"
+        android:name="com.projectbakingapp.fragment.ListStepFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/md_grey_400" />
+
+    <LinearLayout
+        android:id="@+id/recipe_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:background="@color/md_yellow_200"
+        android:orientation="vertical">
+
+        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+            android:id="@+id/playerView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@id/view_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.projectbakingapp.utils.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:padding="8dp"
+                android:text="@string/description"
+                android:textColor="@color/md_grey_700"
+                android:textSize="20sp"
+                app:font="RobotoCondensed-Bold.ttf" />
+
+            <com.projectbakingapp.utils.CustomTextView
+                android:id="@+id/step_name_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:padding="8dp"
+                android:paddingLeft="10dp"
+                android:textColor="@color/md_grey_700"
+                android:textSize="20sp"
+                app:font="RobotoCondensed-Regular.ttf"
+                tools:ignore="SpUsage"
+                tools:text="Description Item :" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

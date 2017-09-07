@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/step_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/md_lime_500"
+    android:layout_marginBottom="4dp"
+    android:orientation="vertical">
+
+    <com.projectbakingapp.utils.CustomTextView
+        android:id="@+id/step_name_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/md_grey_700"
+        android:textSize="16sp"
+        app:font="RobotoCondensed-Bold.ttf"
+        tools:text="Step Name" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/md_white_1000" />
+
+</LinearLayout>
+
