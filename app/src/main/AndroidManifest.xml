@@ -42,11 +42,13 @@
                 android:value=".activity.StepActivity" />
         </activity>
 
-        <receiver android:name=".IngredientsWidgetProvider"
+        <receiver
+            android:name=".IngredientsWidgetProvider"
             android:icon="@drawable/example_appwidget_preview">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/ingredients_widget_provider_info" />
@@ -55,9 +57,13 @@
         <service
             android:name=".ListIngredientService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
-
         <service android:name=".IngredientWidgetService" />
 
+        <activity android:name=".activity.WidgetConfig">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

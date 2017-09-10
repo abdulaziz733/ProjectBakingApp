@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ import com.google.android.exoplayer2.util.Util;
 import com.google.gson.Gson;
 import com.projectbakingapp.R;
 import com.projectbakingapp.model.Step;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,6 +56,10 @@ public class DetailStepActivity extends AppCompatActivity implements ExoPlayer.E
     @Nullable
     @BindView(R.id.playerView)
     SimpleExoPlayerView mPlayerView;
+
+    @Nullable
+    @BindView(R.id.step_thumbnail)
+    ImageView stepThumbnail;
 
     @Nullable
     @BindView(R.id.view_description)
@@ -79,6 +85,10 @@ public class DetailStepActivity extends AppCompatActivity implements ExoPlayer.E
             String data = getIntent().getStringExtra("dataIntent");
             Gson gson = new Gson();
             step = gson.fromJson(data, Step.class);
+
+            if (step.getThumbnailURL() != null && !step.getThumbnailURL().equalsIgnoreCase("")) {
+                Picasso.with(DetailStepActivity.this).load(step.getThumbnailURL()).into(stepThumbnail);
+            }
 
             stepDescripton.setText(step.getShortDescription());
 
@@ -124,8 +134,6 @@ public class DetailStepActivity extends AppCompatActivity implements ExoPlayer.E
         String videoUri = "";
         if (!step.getVideoURL().equalsIgnoreCase("") || step.getVideoURL() == null) {
             videoUri = step.getVideoURL();
-        } else {
-            videoUri = step.getThumbnailURL();
         }
         initializePlayer(Uri.parse(videoUri));
     }

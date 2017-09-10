@@ -3,6 +3,12 @@ package com.projectbakingapp;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingResource;
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
@@ -22,6 +28,8 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class IdlingResourceMainActivityTest {
 
+    private static final String YELLOW_CAKE = "Yellow Cake";
+
     @Rule
     public ActivityTestRule<MainActivity> mainActivityTestRule =
             new ActivityTestRule<>(MainActivity.class);
@@ -31,16 +39,21 @@ public class IdlingResourceMainActivityTest {
     @Before
     public void registerIdlingResource() {
         idlingResource = mainActivityTestRule.getActivity().getIdlingResource();
-        // To prove that the test fails, omit this call:
         Espresso.registerIdlingResources(idlingResource);
     }
 
     @Test
-    public void idlingResourceTest() {
-//        onData(anything()).inAdapterView(withId(R.id.list_recipe)).atPosition(0).perform(click());
-        onView(ViewMatchers.withId(R.id.list_recipe)).perform(RecyclerViewActions.scrollToPosition(1));
-
+    public void checkContentRecipe() {
+        onView(ViewMatchers.withId(R.id.list_recipe)).perform(RecyclerViewActions.scrollToPosition(2));
+        onView(withText(YELLOW_CAKE)).check(matches(isDisplayed()));
     }
+
+//    @Test
+//    public void checkPlayerView_Step() {
+//        onView(ViewMatchers.withId(R.id.list_recipe)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+////        onView(ViewMatchers.withId(R.id.rv_list_step)).perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+//        onView(withId(R.id.rv_list_step)).check(matches(isDisplayed()));
+//    }
 
     @After
     public void unregisterIdlingResource() {

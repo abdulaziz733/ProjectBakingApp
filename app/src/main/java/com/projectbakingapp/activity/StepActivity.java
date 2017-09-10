@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ import com.google.gson.reflect.TypeToken;
 import com.projectbakingapp.R;
 import com.projectbakingapp.fragment.ListStepFragment;
 import com.projectbakingapp.model.Step;
+import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -66,6 +68,10 @@ public class StepActivity extends AppCompatActivity implements ListStepFragment.
     @Nullable
     @BindView(R.id.view_description)
     LinearLayout viewDescription;
+
+    @Nullable
+    @BindView(R.id.step_thumbnail)
+    ImageView stepThumbnail;
 
     @BindView(R.id.list_step_fragment)
     View listStep;
@@ -106,9 +112,14 @@ public class StepActivity extends AppCompatActivity implements ListStepFragment.
 
         if (findViewById(R.id.recipe_linear_layout) != null) {
             setModePotrait();
+
             mTwoPane = true;
             Step step = stepList.get(0);
             stepDescripton.setText(step.getShortDescription());
+
+            if (step.getThumbnailURL() != null && !step.getThumbnailURL().equalsIgnoreCase("")) {
+                Picasso.with(StepActivity.this).load(step.getThumbnailURL()).into(stepThumbnail);
+            }
 
             mPlayerView.setDefaultArtwork(BitmapFactory.decodeResource
                     (getResources(), R.drawable.question_mark));

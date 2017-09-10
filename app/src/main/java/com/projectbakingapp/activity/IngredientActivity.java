@@ -59,7 +59,6 @@ public class IngredientActivity extends AppCompatActivity {
             adapter = new ListIngredientAdapter(ingredientList, IngredientActivity.this);
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
-            String choosenIngredient = gson.toJson(ingredientList);
             Utils.saveDataIngredient(IngredientActivity.this, ingredientList, recipeName);
             IngredientWidgetService.startActionUpdateIngWidgets(IngredientActivity.this);
 

@@ -40,6 +40,7 @@ import timber.log.Timber;
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener,
         ListRecipeAdapter.ListRecipeAdapterListener, DownloadData.DelayerCallback {
 
+    private static final String ADAPTER_TYPE_MAIN = "ADAPTER_TYPE_MAIN";
     private static final int DELAY_MILLIS = 3000;
 
     @BindView(R.id.toolbar)
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         apiInterface = Utils.getAPIService();
         recipeList = new ArrayList<Recipe>();
-        recipeAdapter = new ListRecipeAdapter(recipeList, MainActivity.this, MainActivity.this);
+        recipeAdapter = new ListRecipeAdapter(recipeList, MainActivity.this, MainActivity.this, ADAPTER_TYPE_MAIN);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, 1));
         recyclerView.setAdapter(recipeAdapter);
         refreshListRecipe.setOnRefreshListener(this);
@@ -85,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             @Override
             public void run() {
                 refreshListRecipe.setRefreshing(true);
-//                DownloadData.downloadData(MainActivity.this, MainActivity.this, idlingResource);
             }
         });
 
@@ -120,42 +120,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     }
 
-//    private void getListRecipe(@Nullable final SimpleIdlingResource idlingResource) {
-//
-//        refreshListRecipe.setRefreshing(true);
-//        recipeList.clear();
-//
-//        try {
-//            apiInterface.getListRecipe().enqueue(new Callback<List<Recipe>>() {
-//                @Override
-//                public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
-//                    if (response.isSuccessful()) {
-//                        for (Recipe recipe : response.body()) {
-//                            recipeList.add(recipe);
-//                        }
-//
-//                        recipeAdapter.notifyDataSetChanged();
-//                    }
-//
-//                    refreshListRecipe.setRefreshing(false);
-//                }
-//
-//                @Override
-//                public void onFailure(Call<List<Recipe>> call, Throwable t) {
-//                    refreshListRecipe.setRefreshing(false);
-//                    Timber.d("error", t.getMessage());
-//                    Toast.makeText(MainActivity.this, "Failed to fetch data", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//
-//        } catch (Exception e) {
-//            refreshListRecipe.setRefreshing(false);
-//            Timber.d("error", e.getMessage());
-//            Toast.makeText(this, "Failed to fetch data", Toast.LENGTH_SHORT).show();
-//
-//        }
-//    }
-
     @Override
     public void onRefresh() {
         refreshListRecipe.setRefreshing(true);
@@ -174,10 +138,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public void onIngredientsClicked(int position) {
-        List<Ingredient> stepList = recipeList.get(position).getIngredients();
+        List<Ingredient> ingredients = recipeList.get(position).getIngredients();
         Intent intent = new Intent(MainActivity.this, IngredientActivity.class);
         Gson gson = new Gson();
-        String dataIntent = gson.toJson(stepList);
+        String dataIntent = gson.toJson(ingredients);
         intent.putExtra(getString(R.string.list_ingredient), dataIntent);
         intent.putExtra(getString(R.string.recipe_name), recipeList.get(position).getName());
         startActivity(intent);

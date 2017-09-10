@@ -21,40 +21,54 @@
             android:id="@+id/playerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/md_black_1000"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@color/md_black_1000" />
 
-        <LinearLayout
-            android:id="@+id/view_description"
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_weight="1">
 
-            <com.projectbakingapp.utils.CustomTextView
+            <LinearLayout
+                android:id="@+id/view_description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:padding="8dp"
-                android:text="@string/description"
-                android:textColor="@color/md_grey_700"
-                android:textSize="20sp"
-                app:font="RobotoCondensed-Bold.ttf" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <com.projectbakingapp.utils.CustomTextView
-                android:id="@+id/step_name_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:padding="8dp"
-                android:paddingLeft="10dp"
-                android:textColor="@color/md_grey_700"
-                android:textSize="20sp"
-                app:font="RobotoCondensed-Regular.ttf"
-                tools:ignore="SpUsage"
-                tools:text="Description Item :" />
+                <ImageView
+                    android:id="@+id/step_thumbnail"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="4dp" />
 
-        </LinearLayout>
+                <com.projectbakingapp.utils.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:padding="8dp"
+                    android:text="@string/description"
+                    android:textColor="@color/md_grey_700"
+                    android:textSize="20sp"
+                    app:font="RobotoCondensed-Bold.ttf" />
+
+                <com.projectbakingapp.utils.CustomTextView
+                    android:id="@+id/step_name_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:padding="8dp"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/md_grey_700"
+                    android:textSize="20sp"
+                    app:font="RobotoCondensed-Regular.ttf"
+                    tools:ignore="SpUsage"
+                    tools:text="Description Item :" />
+
+            </LinearLayout>
+
+
+        </android.support.v4.widget.NestedScrollView>
+
 
     </LinearLayout>
 

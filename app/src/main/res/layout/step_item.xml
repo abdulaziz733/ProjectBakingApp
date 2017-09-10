@@ -12,9 +12,8 @@
     <com.projectbakingapp.utils.CustomTextView
         android:id="@+id/step_name_item"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_weight="1"
         android:gravity="center"
         android:textColor="@color/md_grey_700"
         android:textSize="16sp"
